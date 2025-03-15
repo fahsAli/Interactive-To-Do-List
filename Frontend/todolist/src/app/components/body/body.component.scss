@@ -59,8 +59,50 @@ h1 {
   display: block;
 }
 
+.add-task-button {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  height: auto;
+  font-size: 16px;
+  padding: 12px 15px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-/* Responsive adjustments */
+.add-task-button:hover {
+  background-color: #357ac5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.add-task-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-task-button i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .add-task-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+
 @media (max-width: 768px) {
   .lists-container {
     flex-direction: column;
