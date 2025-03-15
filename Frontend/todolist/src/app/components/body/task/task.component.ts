@@ -35,6 +35,8 @@ export class TaskComponent {
   }
 
   saveTask() {
+
+    
     if (this.task.id) {
       this.taskService.updateTask(this.task.id, this.editedTask).subscribe(updatedTask => {
         this.taskUpdated.emit(updatedTask);

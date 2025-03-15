@@ -1,4 +1,4 @@
-<div class="task-card" cdkDrag>
+<div class="task-card" [attr.data-priority]="task.priority" cdkDrag>
     <ng-container *ngIf="!isEditing; else editForm">
       <h3>{{ task.title }}</h3>
       <p *ngIf="task.priority">Priority: {{ task.priority }}</p>
@@ -9,7 +9,7 @@
   
     <ng-template #editForm>
       <input [(ngModel)]="editedTask.title" placeholder="Title" />
-      <input [(ngModel)]="editedTask.priority" type="number" placeholder="Priority" />
+      <input [(ngModel)]="editedTask.priority" type="number" placeholder="Priority" min="0" />
       <input [(ngModel)]="editedTask.due_date" type="date" />
       <button (click)="saveTask()">Save</button>
       <button (click)="cancelEditing()">Cancel</button>

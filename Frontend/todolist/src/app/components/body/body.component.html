@@ -1,41 +1,44 @@
-<div class="example-container">
-  <h2>To do</h2>
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList]"
-    class="example-list"
-    id="todoList"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <app-task
-      *ngFor="let task of todo"
-      [task]="task"
-      (taskDeleted)="onTaskDeleted($event)"
-      (taskUpdated)="onTaskUpdated($event)"
-      cdkDrag
-    ></app-task>
+<div class="lists-container">
+  <div class="example-container">
+    <h2>To do</h2>
+    <!-- <button class="add-task-button">Add New Task</button> -->
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      id="todoList"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task
+        *ngFor="let task of todo"
+        [task]="task"
+        (taskDeleted)="onTaskDeleted($event)"
+        (taskUpdated)="onTaskUpdated($event)"
+        cdkDrag
+      ></app-task>
+    </div>
   </div>
-</div>
 
-<div class="example-container">
-  <h2>Done</h2>
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList]"
-    class="example-list"
-    id="doneList"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <app-task
-      *ngFor="let task of done"
-      [task]="task"
-      (taskDeleted)="onTaskDeleted($event)"
-      (taskUpdated)="onTaskUpdated($event)"
-      cdkDrag
-    ></app-task>
+  <div class="example-container">
+    <h2>Done</h2>
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      id="doneList"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task
+        *ngFor="let task of done"
+        [task]="task"
+        (taskDeleted)="onTaskDeleted($event)"
+        (taskUpdated)="onTaskUpdated($event)"
+        cdkDrag
+      ></app-task>
+    </div>
   </div>
 </div>
