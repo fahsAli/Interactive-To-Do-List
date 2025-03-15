@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Add New Task</h2>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Task Title</mat-label>
+      <input matInput [(ngModel)]="task.title" name="title" required placeholder="Enter task title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="task.priority" name="priority">
+        <mat-option [value]="null">None</mat-option>
+        <mat-option [value]="1">1 - High</mat-option>
+        <mat-option [value]="2">2 - Medium</mat-option>
+        <mat-option [value]="3">3 - Low</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="task.due_date" name="dueDate" [min]="minDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!task.title" style="margin: 8px;">Save</button>
+</div>

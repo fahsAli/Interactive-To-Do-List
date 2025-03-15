@@ -5,6 +5,8 @@ import { TaskService } from '../../services/task.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskComponent } from './task/task.component';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 
 @Component({
@@ -17,7 +19,12 @@ export class BodyComponent implements OnInit {
   todo: TaskResponse[] = [];
   done: TaskResponse[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private dialog: MatDialog,
+    private taskService: TaskService
+  ) {
+    this.fetchTasks();
+  }
 
   ngOnInit() {
     this.fetchTasks();
@@ -27,6 +34,27 @@ export class BodyComponent implements OnInit {
     this.taskService.getAllTasks().subscribe(tasks => {
       this.todo = tasks.filter(task => !task.task_is_done);
       this.done = tasks.filter(task => task.task_is_done);
+    });
+  }
+
+  openAddTaskDialog() {
+    const dialogRef = this.dialog.open(AddTaskDialogComponent, {
+      width: '500px',
+      height: 'auto',
+      disableClose: true
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskService.createTask(result).subscribe({
+          next: (newTask) => {
+            this.todo.push(newTask);
+          },
+          error: (error) => {
+            console.error('Error creating task:', error);
+          }
+        });
+      }
     });
   }
 
