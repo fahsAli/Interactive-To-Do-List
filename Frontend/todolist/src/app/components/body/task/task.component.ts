@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, NgModule } from '@angular/core'
 import { TaskResponse } from '../../../models/task.response.model';
 import { TaskRequest } from '../../../models/task.request.model';
 import { TaskService } from '../../../services/task.service';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     NgIf,
+    DatePipe
   ]
 })
 export class TaskComponent {
